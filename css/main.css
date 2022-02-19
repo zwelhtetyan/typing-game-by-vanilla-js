@@ -106,7 +106,7 @@
           justify-content: center;
   width: 100%;
   height: calc(100vh - 32px);
-  display: none;
+  display: flex;
 }
 
 .home h1 {
@@ -245,7 +245,7 @@
   display: none;
   width: 100%;
   height: calc(100vh - 32px);
-  display: block;
+  display: none;
 }
 
 .playground-header {
