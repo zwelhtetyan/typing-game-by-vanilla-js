@@ -161,11 +161,14 @@ typingInput.addEventListener('keyup', (e) => {
 
 const backspace = (e) => {
     const givenWordArr = [...givenWord.querySelectorAll('span')];
-    if (e.key === 'Backspace') {
+    if (e.key === 'Backspace' || e.key === 'Delete') {
         if (e.target.value.length >= givenWordArr.length) {
             return;
         } else {
             givenWordArr[userTypedArr.length].classList.remove('correct-color');
         }
+    }
+    if (e.key === 'Delete') {
+        console.log('hi');
     }
 };
