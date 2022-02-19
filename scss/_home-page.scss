@@ -1,0 +1,64 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: calc(100vh - 32px);
+    display: flex; // test
+
+    h1 {
+        font-size: 3em;
+        letter-spacing: 10px;
+        font-family: 'Permanent Marker', cursive;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2em;
+        @include responsive('tablet') {
+            height: 4em;
+        }
+    }
+    .typing-gif {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 3rem 0 2rem;
+        &-img {
+            width: 70%;
+            @include responsive('mobile') {
+                width: 100%;
+            }
+        }
+    }
+    .level-and-start {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        #level,
+        .start {
+            padding: 10px 25px;
+            margin: 1em;
+            background-color: $font-color;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            user-select: none;
+            transition: $translation-short;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+                rgba(0, 0, 0, 0.22) 0px 10px 10px;
+            &:hover {
+                background-color: $button-color-hover;
+                color: $text-white;
+            }
+        }
+        #level {
+            option {
+                background-color: $button-color-hover;
+            }
+        }
+    }
+}

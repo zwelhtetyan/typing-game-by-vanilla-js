@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Game</title>
+    <link rel="stylesheet" href="./library/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <!--preloader-->
+    <div class="pre-loader">
+        <img src="./assets/loading.gif" alt="">
+        <h2 class="loading">loading . . .</h2>
+    </div>
+    <!--end of preloader-->
+
+    <div class="main-container">
+        <!--home-->
+        <div class="home">
+            <h1 class="title"></h1>
+
+
+            <div class=" typing-gif">
+                <img src="./assets/typing.gif" alt="" class="typing-gif-img">
+            </div>
+
+            <!--level and start-->
+            <div class="level-and-start">
+                <select name="" id="level">
+                    <option value="medium">Medium</option>
+                    <option value="easy">Easy</option>
+                    <option value="hard">Hard</option>
+                </select>
+                <button class="start">Let's go</button>
+            </div>
+            <!--end of level and start-->
+        </div>
+        <!--end of home-->
+
+        <!--counter layer-->
+        <div class="counter-layer">
+            <h1 class="count-number">3</h1>
+        </div>
+        <!--end of counter layer-->
+
+        <!--playground-->
+        <div class="playground">
+            <!--playground header-->
+            <div class="playground-header">
+                <div class="time-left">Time left : <span class="number">00</span></div>
+                <div class="score-and-pause">
+                    <div class="score">Score : <span class="number">0</span></div>
+                    <i class="fas fa-pause pause"></i>
+                </div>
+            </div>
+            <!--end of playground header-->
+
+            <div class="playground-body">
+                <!--caption-->
+                <div class="caption">
+                    Type the given word within <span class="second">3</span> seconds
+                </div>
+                <!--end of caption-->
+                <!--given word-->
+                <div class="given-word">
+
+                </div>
+                <!--end of given word-->
+
+
+                <!--typing input-->
+                <div class="typing-input-container">
+                    <input autofocus type="text" class="typing-input" placeholder="Start typing ...">
+                </div>
+                <!--end of typing input-->
+            </div>
+
+        </div>
+        <!--end of playground-->
+
+        <!--overlay layer-->
+        <div class="overlay-layer">
+            <div class="resume">Resume</div>
+            <div class="restart">Restart</div>
+            <div class="quit">Quit</div>
+        </div>
+        <!--end of overlay layer-->
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>

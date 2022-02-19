@@ -1,0 +1,21 @@
+.counter-layer {
+    @include fixedLayer;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    .count-number {
+        transition: $translation-short;
+        transform: scale(0);
+        color: $font-color;
+    }
+    display: none;
+}
+.count-number.count {
+    transform: scale(20);
+    @include responsive('tablet') {
+        transform: scale(15);
+    }
+    @include responsive('mobile') {
+        transform: scale(8);
+    }
+}

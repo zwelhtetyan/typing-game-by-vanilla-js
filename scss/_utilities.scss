@@ -1,0 +1,8 @@
+@mixin fixedLayer {
+    width: 100%;
+    min-height: 100vh;
+    background-color: $main-bg;
+    position: fixed;
+    top: 0;
+    left: 0;
+}

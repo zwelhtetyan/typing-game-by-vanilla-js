@@ -1,0 +1,93 @@
+.playground {
+    display: none;
+    width: 100%;
+    height: calc(100vh - 32px);
+    display: none; //test
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .time-left,
+        .score {
+            border: 2px solid;
+            padding: 10px 15px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            @include responsive('mobile') {
+                padding: 10px;
+            }
+            .number {
+                color: $text-gold;
+            }
+        }
+
+        .score-and-pause {
+            display: flex;
+            align-items: center;
+            .pause {
+                font-size: 2em;
+                margin-left: 20px;
+                cursor: pointer;
+                @include responsive('mobile') {
+                    margin-left: 15px;
+                }
+            }
+        }
+    }
+    .playground-body {
+        height: calc(100vh - 74px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        .caption {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            letter-spacing: $letter-spacing;
+            .second {
+                color: $text-gold;
+            }
+            @include responsive('mobile') {
+                font-size: 1.4em;
+            }
+        }
+        .given-word {
+            text-align: center;
+            font-size: 3em;
+            letter-spacing: $letter-spacing;
+            color: $text-white;
+            @include responsive('mobile') {
+                font-size: 2.5em;
+            }
+        }
+        .typing-input-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 5em;
+
+            .typing-input {
+                width: 70%;
+                border: 2px solid #00d1ff;
+                padding: 7px 13px;
+                border-radius: 10px;
+                transition: $translation-short;
+                background: $input-bg;
+                color: $text-gold;
+                font-size: 1.3rem;
+                @include responsive('mobile') {
+                    width: 95%;
+                }
+                &:focus-visible {
+                    outline: 1px solid #98ddec;
+                }
+            }
+        }
+    }
+}
+
+.correct-color {
+    color: $text-gold;
+}
