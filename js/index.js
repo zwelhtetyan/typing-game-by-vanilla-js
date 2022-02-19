@@ -149,6 +149,9 @@ function wordMatching(e) {
         userTypedArr[userTypedArr.length - 1] ===
         givenWordArr[userTypedArr.length - 1].innerText
     ) {
+        if (window.innerWidth < 1100) {
+            return;
+        }
         givenWordArr[userTypedArr.length - 1].classList.add('correct-color');
     }
 }
@@ -161,9 +164,13 @@ typingInput.addEventListener('keydown', (e) => {
 
 const backspace = (e) => {
     const givenWordArr = [...givenWord.querySelectorAll('span')];
-    // if (e.key === 'Backspace' || e.key === 'Delete')
+
+    if (window.innerWidth < 1100) {
+        return;
+    }
+
     if (e.keyCode === 8 || e.keyCode === 46) {
-        if (e.target.value.length >= givenWordArr.length) {
+        if (e.target.value.length > givenWordArr.length) {
             return;
         } else {
             givenWordArr[userTypedArr.length - 1].classList.remove(
