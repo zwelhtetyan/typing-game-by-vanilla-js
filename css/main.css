@@ -106,7 +106,7 @@
           justify-content: center;
   width: 100%;
   height: calc(100vh - 32px);
-  display: none;
+  display: flex;
 }
 
 .home h1 {
@@ -245,7 +245,7 @@
   display: none;
   width: 100%;
   height: calc(100vh - 32px);
-  display: block;
+  display: none;
 }
 
 .playground-header {
@@ -348,7 +348,21 @@
   }
 }
 
+.playground .playground-body .correct-gif {
+  width: 80px;
+  border-radius: 15px;
+  margin: 1em 0;
+  position: absolute;
+  top: -92px;
+  display: none;
+}
+
+.playground .playground-body .correct-gif.show {
+  display: block;
+}
+
 .playground .playground-body .typing-input-container {
+  position: relative;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;

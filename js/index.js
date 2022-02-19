@@ -127,6 +127,7 @@ changeWord();
 
 let userTypedArr = [];
 
+//word matching
 function wordMatching(e) {
     userTypedArr = [...this.value];
     const givenWordArr = [...givenWord.querySelectorAll('span')];
@@ -143,6 +144,7 @@ function wordMatching(e) {
         this.value = '';
         if (userTypedArr.length === 0) return;
         changeWord();
+        showCorrectGif();
     }
 
     if (
@@ -162,6 +164,7 @@ typingInput.addEventListener('keydown', (e) => {
     backspace(e);
 });
 
+// for backspace
 const backspace = (e) => {
     const givenWordArr = [...givenWord.querySelectorAll('span')];
 
@@ -178,4 +181,13 @@ const backspace = (e) => {
             );
         }
     }
+};
+
+//show correct gif
+const showCorrectGif = () => {
+    const correctGif = document.querySelector('.correct-gif');
+    correctGif.classList.add('show');
+    setTimeout(() => {
+        correctGif.classList.remove('show');
+    }, 1000);
 };
