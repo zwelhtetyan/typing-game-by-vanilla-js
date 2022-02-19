@@ -155,7 +155,7 @@ function wordMatching(e) {
 
 typingInput.addEventListener('keyup', wordMatching);
 typingInput.addEventListener('keydown', wordMatching);
-typingInput.addEventListener('keyup', (e) => {
+typingInput.addEventListener('keydown', (e) => {
     backspace(e);
 });
 
@@ -166,7 +166,9 @@ const backspace = (e) => {
         if (e.target.value.length >= givenWordArr.length) {
             return;
         } else {
-            givenWordArr[userTypedArr.length].classList.remove('correct-color');
+            givenWordArr[userTypedArr.length - 1].classList.remove(
+                'correct-color'
+            );
         }
     }
 };
