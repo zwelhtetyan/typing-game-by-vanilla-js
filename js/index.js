@@ -165,9 +165,9 @@ function wordMatching() {
         userTypedArr[userTypedArr.length - 1] ===
         givenWordArr[userTypedArr.length - 1].innerText
     ) {
-        if (window.innerWidth < 1100) {
-            return;
-        }
+        // if (window.innerWidth < 1100) {
+        //     return;
+        // }
         givenWordArr[userTypedArr.length - 1].classList.add('correct-color');
     }
 }
@@ -183,11 +183,11 @@ const backspace = (e) => {
     if (e.target.value.length === 0) return;
     const givenWordArr = [...givenWord.querySelectorAll('span')];
 
-    if (window.innerWidth < 1100) {
-        return;
-    }
+    // if (window.innerWidth < 1100) {
+    //     return;
+    // }
 
-    if (e.keyCode === 8 || e.keyCode === 46) {
+    if (e.keyCode === 8 || e.key === 'Backspace') {
         if (e.target.value.length > givenWordArr.length) {
             return;
         } else {
@@ -214,22 +214,20 @@ const gameOverGif = document.querySelector('.game-over-gif');
 
 //getting value form level select input
 const level = document.getElementById('level');
-
-level.addEventListener('change', (e) => {
-    const difficulty = e.target.value;
-    if (difficulty === 'easy') {
-        time = 7;
-        console.log(7);
-    } else if (difficulty === 'medium') {
-        time = 5;
-        console.log(5);
-    } else {
-        time = 3;
-        console.log(3);
-    }
-});
-
 let time = 7;
+// level.addEventListener('change', (e) => {
+//     const difficulty = e.target.value;
+//     if (difficulty === 'easy') {
+//         time = 7;
+//         console.log(7);
+//     } else if (difficulty === 'medium') {
+//         time = 5;
+//         console.log(5);
+//     } else {
+//         time = 3;
+//         console.log(3);
+//     }
+// });
 
 // calculation time
 function timer(totalScore) {
