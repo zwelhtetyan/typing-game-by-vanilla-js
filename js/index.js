@@ -238,6 +238,7 @@ function timer(totalScore) {
     const timeLeft = time < 10 ? '0' + time.toString() : time;
     timeLeftNumber.textContent = timeLeft;
     if (time === 0) {
+        typingInput.disabled = true;
         if (totalScore < 10) {
             gameOverFeedback.innerHTML = `OOps! You don't even get <span class="min-score">10</span> scores`;
             gameOverGif.src = './assets/Q74YlL.gif';
