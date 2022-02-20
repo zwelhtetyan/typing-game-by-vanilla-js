@@ -51,9 +51,9 @@ const countingNumber = () => {
                 counterLayer.style.display = 'none';
                 playground.style.display = 'block';
                 typingInput.focus();
-                // startTime = setInterval(() => timer(totalScore), 1000);
+                time = level.value;
+                startTime = setInterval(() => timer(totalScore), 1000);
             }, 300);
-
             return;
         }
         countNumberValue--;
@@ -78,22 +78,6 @@ start.addEventListener('click', () => {
     homePage.style.display = 'none';
     counterLayer.style.display = 'flex';
     setTimeout(countingNumber, 300);
-});
-
-// playground UI
-//pause button click
-const pauseBtn = document.querySelector('.pause');
-const overlayLayer = document.querySelector('.overlay-layer');
-pauseBtn.addEventListener('click', () => {
-    overlayLayer.classList.add('open');
-});
-
-//quit button click
-const quitBtn = document.querySelector('.quit');
-quitBtn.addEventListener('click', () => {
-    overlayLayer.classList.remove('open');
-    playground.style.display = 'none';
-    homePage.style.display = 'block';
 });
 
 // playground UI
@@ -157,8 +141,8 @@ function wordMatching() {
         typingInput.focus();
         showCorrectGif();
         clearInterval(startTime);
-        time = 7;
-        startTime = setInterval(() => timer(totalScore, time), 1000);
+        time = level.value;
+        startTime = setInterval(() => timer(totalScore), 1000);
     }
 
     if (
@@ -214,25 +198,20 @@ const gameOverGif = document.querySelector('.game-over-gif');
 
 //getting value form level select input
 const level = document.getElementById('level');
-let time = 7;
-// level.addEventListener('change', (e) => {
-//     const difficulty = e.target.value;
-//     if (difficulty === 'easy') {
-//         time = 7;
-//         console.log(7);
-//     } else if (difficulty === 'medium') {
-//         time = 5;
-//         console.log(5);
-//     } else {
-//         time = 3;
-//         console.log(3);
-//     }
-// });
+
+level.addEventListener('change', (e) => {
+    const givenTime = document.querySelector('.second');
+
+    //update givenTime
+    givenTime.textContent = e.target.value;
+});
+
+let time; // global variable assign by line (54) and (164) used by line (226)
 
 // calculation time
 function timer(totalScore) {
     time -= 1;
-    console.log(time);
+    // console.log(time);
     const timeLeft = time < 10 ? '0' + time.toString() : time;
     timeLeftNumber.textContent = timeLeft;
     if (time === 0) {
@@ -244,7 +223,57 @@ function timer(totalScore) {
             gameOverFeedback.innerHTML = `Wowwww! You got over <span class="min-score">10</span> scores`;
             gameOverGif.src = './assets/wow-rap-battle.gif';
         }
-        gameOverLayer.style.display = 'flex';
+        gameOverLayer.classList.add('show');
         clearInterval(startTime);
     }
 }
+
+//pause button click
+const pauseBtn = document.querySelector('.pause');
+const overlayLayer = document.querySelector('.overlay-layer');
+pauseBtn.addEventListener('click', () => {
+    clearInterval(startTime);
+    overlayLayer.classList.add('open');
+    typingInput.disabled = true;
+});
+
+// resume button click
+const resumeBtn = document.querySelector('.resume');
+resumeBtn.addEventListener('click', () => {
+    startTime = setInterval(() => timer(totalScore), 1000);
+    overlayLayer.classList.remove('open');
+    typingInput.disabled = false;
+    typingInput.focus();
+});
+
+// restart button click
+const restartFunc = () => {
+    overlayLayer.classList.remove('open');
+    timeLeftNumber.textContent = '00';
+    totalScore = 0;
+    updateTotalScore(totalScore);
+    changeWord();
+    typingInput.disabled = false;
+    typingInput.value = '';
+    typingInput.focus();
+};
+
+const restartBtn = document.querySelector('.restart');
+restartBtn.addEventListener('click', () => {
+    restartFunc();
+    time = level.value;
+    startTime = setInterval(() => timer(totalScore), 1000);
+});
+
+//quit button click
+const quitBtn = document.querySelectorAll('.quit');
+quitBtn.forEach((quitButton) => {
+    quitButton.addEventListener('click', () => {
+        restartFunc();
+        playground.style.display = 'none';
+        homePage.style.display = 'flex';
+        if (gameOverLayer.classList.contains('show')) {
+            gameOverLayer.classList.remove('show');
+        }
+    });
+});
