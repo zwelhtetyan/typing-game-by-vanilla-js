@@ -5,7 +5,7 @@ window.addEventListener('load', () => {
 // end of preloader
 
 // using typed js for title
-var typed = new Typed('.title', {
+const typed = new Typed('.title', {
     strings: ['Test your typing skill'],
     loop: true,
     loopCount: Infinity,
@@ -50,6 +50,8 @@ const countingNumber = () => {
             setTimeout(() => {
                 counterLayer.style.display = 'none';
                 playground.style.display = 'block';
+                typingInput.focus();
+                // startTime = setInterval(() => timer(totalScore), 1000);
             }, 300);
 
             return;
@@ -110,6 +112,12 @@ const words = [
 
 let givenWord = document.querySelector('.given-word');
 const typingInput = document.querySelector('.typing-input');
+const scoreNumber = document.querySelectorAll('.score-num');
+
+//updateTotalScore
+const updateTotalScore = (totalScore) => {
+    scoreNumber.forEach((scoreNum) => (scoreNum.textContent = totalScore));
+};
 
 //changeWord
 const changeWord = () => {
@@ -121,14 +129,14 @@ const changeWord = () => {
     words[generateRandomNumber()].split('').forEach((word) => {
         givenWord.innerHTML += `<span>${word}</span>`;
     });
-    typingInput.focus();
 };
 changeWord();
 
 let userTypedArr = [];
-
+let startTime;
+let totalScore = 0;
 //word matching
-function wordMatching(e) {
+function wordMatching() {
     userTypedArr = [...this.value];
     const givenWordArr = [...givenWord.querySelectorAll('span')];
     const givenWordText = givenWordArr
@@ -143,8 +151,14 @@ function wordMatching(e) {
     ) {
         this.value = '';
         if (userTypedArr.length === 0) return;
+        totalScore++;
+        updateTotalScore(totalScore);
         changeWord();
+        typingInput.focus();
         showCorrectGif();
+        clearInterval(startTime);
+        time = 7;
+        startTime = setInterval(() => timer(totalScore, time), 1000);
     }
 
     if (
@@ -166,6 +180,7 @@ typingInput.addEventListener('keydown', (e) => {
 
 // for backspace
 const backspace = (e) => {
+    if (e.target.value.length === 0) return;
     const givenWordArr = [...givenWord.querySelectorAll('span')];
 
     if (window.innerWidth < 1100) {
@@ -191,3 +206,46 @@ const showCorrectGif = () => {
         correctGif.classList.remove('show');
     }, 1000);
 };
+
+const timeLeftNumber = document.querySelector('.time-left-num');
+const gameOverLayer = document.querySelector('.game-over-layer');
+const gameOverFeedback = document.querySelector('.game-over-feedback');
+const gameOverGif = document.querySelector('.game-over-gif');
+
+//getting value form level select input
+const level = document.getElementById('level');
+
+level.addEventListener('change', (e) => {
+    const difficulty = e.target.value;
+    if (difficulty === 'easy') {
+        time = 7;
+        console.log(7);
+    } else if (difficulty === 'medium') {
+        time = 5;
+        console.log(5);
+    } else {
+        time = 3;
+        console.log(3);
+    }
+});
+
+let time = 7;
+
+// calculation time
+function timer(totalScore) {
+    time -= 1;
+    console.log(time);
+    const timeLeft = time < 10 ? '0' + time.toString() : time;
+    timeLeftNumber.textContent = timeLeft;
+    if (time === 0) {
+        if (totalScore < 10) {
+            gameOverFeedback.innerHTML = `OOps! You don't even get <span class="min-score">10</span> scores`;
+            gameOverGif.src = './assets/Q74YlL.gif';
+        } else {
+            gameOverFeedback.innerHTML = `Wowwww! You got over <span class="min-score">10</span> scores`;
+            gameOverGif.src = './assets/wow-rap-battle.gif';
+        }
+        gameOverLayer.style.display = 'flex';
+        clearInterval(startTime);
+    }
+}

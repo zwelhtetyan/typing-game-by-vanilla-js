@@ -2,11 +2,15 @@
     display: none;
     width: 100%;
     height: calc(100vh - 32px);
-    display: none; //test
+    // display: block;
     &-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        background: $main-bg;
+        position: sticky;
+        top: 16px;
+        padding: 10px 0;
         .time-left,
         .score {
             border: 2px solid;
@@ -16,7 +20,8 @@
             @include responsive('mobile') {
                 padding: 10px;
             }
-            .number {
+            .time-left-num,
+            .score-num {
                 color: $text-gold;
             }
         }
@@ -35,7 +40,7 @@
         }
     }
     .playground-body {
-        height: calc(100vh - 74px);
+        height: calc(100vh - 94px);
         display: flex;
         align-items: center;
         justify-content: center;

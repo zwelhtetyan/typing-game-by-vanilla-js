@@ -7,22 +7,9 @@
     justify-content: center;
     align-items: center;
     transition: $translation-short;
-    div {
-        text-transform: uppercase;
-        letter-spacing: $letter-spacing;
-        font-size: 2.5em;
-        // background: $main-bg;
-        background-color: $font-color;
-        cursor: pointer;
-        user-select: none;
-        padding: 5px 20px;
-        border-radius: 5px;
-        margin: 7px 0;
-        color: black;
-        transition: $translation-short;
-        &:hover {
-            background-color: $button-color-hover;
-        }
+    z-index: 9;
+    .button {
+        @include buttonStyle;
     }
 }
 .overlay-layer.open {

@@ -51,9 +51,9 @@
         <div class="playground">
             <!--playground header-->
             <div class="playground-header">
-                <div class="time-left">Time left : <span class="number">00</span></div>
+                <div class="time-left">Time left : <span class="time-left-num">00</span></div>
                 <div class="score-and-pause">
-                    <div class="score">Score : <span class="number">0</span></div>
+                    <div class="score">Score : <span class="score-num">0</span></div>
                     <i class="fas fa-pause pause"></i>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                 <!--typing input-->
                 <div class="typing-input-container">
                     <img src="./assets/nice-good.gif" alt="" class="correct-gif">
-                    <input autofocus type="text" class="typing-input" placeholder="Start typing ...">
+                    <input type="text" class="typing-input" placeholder="Start typing ...">
                 </div>
                 <!--end of typing input-->
             </div>
@@ -84,12 +84,23 @@
 
         <!--overlay layer-->
         <div class="overlay-layer">
-            <div class="resume">Resume</div>
-            <div class="restart">Restart</div>
-            <div class="quit">Quit</div>
+            <div class="resume button">Resume</div>
+            <div class="restart button">Restart</div>
+            <div class="quit button">Quit</div>
         </div>
         <!--end of overlay layer-->
 
+        <!--gameOver overlay layer-->
+        <div class="game-over-layer">
+            <div class="game-over">
+                <p class="game-over-score">Score : <span class="game-over-score-num score-num">7</span></p>
+                <p class="game-over-feedback"></p>
+                <img src="" alt="" class="game-over-gif">
+                <div class="restart button">Play Again</div>
+                <div class="quit button">Quit</div>
+            </div>
+        </div>
+        <!--end of gameOver overlay layer-->
     </div>
 
 

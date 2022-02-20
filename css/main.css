@@ -106,7 +106,6 @@
           justify-content: center;
   width: 100%;
   height: calc(100vh - 32px);
-  display: flex;
 }
 
 .home h1 {
@@ -245,7 +244,6 @@
   display: none;
   width: 100%;
   height: calc(100vh - 32px);
-  display: none;
 }
 
 .playground-header {
@@ -258,6 +256,11 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background: #2c2c2a;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 16px;
+  padding: 10px 0;
 }
 
 .playground-header .time-left,
@@ -275,8 +278,10 @@
   }
 }
 
-.playground-header .time-left .number,
-.playground-header .score .number {
+.playground-header .time-left .time-left-num,
+.playground-header .time-left .score-num,
+.playground-header .score .time-left-num,
+.playground-header .score .score-num {
   color: #ffd615;
 }
 
@@ -302,7 +307,7 @@
 }
 
 .playground .playground-body {
-  height: calc(100vh - 74px);
+  height: calc(100vh - 94px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -427,9 +432,10 @@
           align-items: center;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
+  z-index: 9;
 }
 
-.overlay-layer div {
+.overlay-layer .button {
   text-transform: uppercase;
   letter-spacing: 3px;
   font-size: 2.5em;
@@ -447,12 +453,113 @@
   transition: all 0.3s;
 }
 
-.overlay-layer div:hover {
+.overlay-layer .button:hover {
   background-color: #1aa98e;
 }
 
 .overlay-layer.open {
   -webkit-transform: scale(1);
           transform: scale(1);
+}
+
+.game-over-layer {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #2c2c2a;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #020202ed;
+  z-index: 9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: none;
+}
+
+.game-over-layer .game-over {
+  width: 60%;
+  height: 75vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .game-over-layer .game-over {
+    width: 90%;
+  }
+}
+
+.game-over-layer .game-over-gif {
+  border-radius: 5px;
+  width: 40%;
+  margin-bottom: 1em;
+}
+
+@media screen and (max-width: 480px) {
+  .game-over-layer .game-over-gif {
+    width: 80%;
+  }
+}
+
+.game-over-layer .game-over .button {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 2.5em;
+  background-color: #21e6c1;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  padding: 5px 20px;
+  border-radius: 5px;
+  margin: 7px 0;
+  color: black;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  font-size: 1.3em;
+  letter-spacing: 0;
+  padding: 5px 10px;
+}
+
+.game-over-layer .game-over .button:hover {
+  background-color: #1aa98e;
+}
+
+.game-over-layer .game-over-feedback {
+  margin: 1.5em 0;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  text-align: center;
+}
+
+.game-over-layer .game-over-feedback .min-score {
+  color: #ffd615;
+}
+
+.game-over-layer .game-over-score {
+  font-size: 2.5em;
+}
+
+.game-over-layer .game-over-score-num {
+  color: #ffd615;
 }
 /*# sourceMappingURL=main.css.map */
