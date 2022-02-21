@@ -108,7 +108,7 @@ const updateTotalScore = (totalScore) => {
 const changeWord = () => {
     //generate random number
     const generateRandomNumber = () => {
-        return Math.floor(Math.random() * 10);
+        return Math.floor(Math.random() * words.length);
     };
     givenWord.innerHTML = '';
     words[generateRandomNumber()].split('').forEach((word) => {
