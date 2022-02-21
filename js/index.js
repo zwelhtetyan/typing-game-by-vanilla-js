@@ -71,7 +71,7 @@ const addingClassToCountNumber = () => {
 };
 // end of counting number
 
-//let's go
+//let's go button
 const homePage = document.querySelector('.home');
 const start = document.querySelector('.start');
 start.addEventListener('click', () => {
@@ -81,6 +81,7 @@ start.addEventListener('click', () => {
 });
 
 // playground UI
+// word array
 const words = [
     'Javascript',
     'Congratulations',
@@ -119,6 +120,7 @@ changeWord();
 let userTypedArr = [];
 let startTime;
 let totalScore = 0;
+
 //word matching
 function wordMatching() {
     userTypedArr = [...this.value];
@@ -129,6 +131,8 @@ function wordMatching() {
 
     if (this.value.length === 0) return;
     if (this.value.length > givenWordArr.length) return;
+
+    // change word when user correct the given word
     if (
         this.value.length === givenWordArr.length &&
         this.value === givenWordText
@@ -145,6 +149,7 @@ function wordMatching() {
         startTime = setInterval(() => timer(totalScore), 1000);
     }
 
+    // if userTypedWord is GivenWord , change green color
     if (
         userTypedArr[userTypedArr.length - 1] ===
         givenWordArr[userTypedArr.length - 1].innerText
@@ -199,16 +204,16 @@ const gameOverGif = document.querySelector('.game-over-gif');
 //getting value form level select input
 const level = document.getElementById('level');
 
+// update time inside playground caption message
 level.addEventListener('change', (e) => {
     const givenTime = document.querySelector('.second');
-
     //update givenTime
     givenTime.textContent = e.target.value;
 });
 
 let time; // global variable assign by line (54) and (164) used by line (226)
 
-// calculation time
+// creating timer function
 function timer(totalScore) {
     time -= 1;
     // console.log(time);
@@ -246,7 +251,7 @@ resumeBtn.addEventListener('click', () => {
     typingInput.focus();
 });
 
-// restart button click
+// restart button Function
 const restartFunc = () => {
     overlayLayer.classList.remove('open');
     timeLeftNumber.textContent = '00';
@@ -256,13 +261,19 @@ const restartFunc = () => {
     typingInput.disabled = false;
     typingInput.value = '';
     typingInput.focus();
+    if (gameOverLayer.classList.contains('show')) {
+        gameOverLayer.classList.remove('show');
+    }
 };
 
-const restartBtn = document.querySelector('.restart');
-restartBtn.addEventListener('click', () => {
-    restartFunc();
-    time = level.value;
-    startTime = setInterval(() => timer(totalScore), 1000);
+// restart button click
+const restartBtn = document.querySelectorAll('.restart');
+restartBtn.forEach((restartButton) => {
+    restartButton.addEventListener('click', () => {
+        restartFunc();
+        time = level.value;
+        startTime = setInterval(() => timer(totalScore), 1000);
+    });
 });
 
 //quit button click
@@ -272,8 +283,5 @@ quitBtn.forEach((quitButton) => {
         restartFunc();
         playground.style.display = 'none';
         homePage.style.display = 'flex';
-        if (gameOverLayer.classList.contains('show')) {
-            gameOverLayer.classList.remove('show');
-        }
     });
 });
